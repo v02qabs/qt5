@@ -8,16 +8,19 @@
 #include <QLineEdit>
 int main(int argc, char *argv[])
 {
+	char *address;
 		if(argc < 2)
 		{
 						qDebug() << "error";
+						address = "https://www.google.co.jp";
 		}
-		els
+		else
 		{
 						qDebug() << argv[1];
+						address=argv[1];
+						
 		}
 
-		char *address = argv[1];
 
     QApplication a(argc, argv);
     QWidget *myActivity = new QWidget();
@@ -39,6 +42,7 @@ int main(int argc, char *argv[])
 		QWebView *web_view = new QWebView();
 		
 		web_view -> load(QUrl(address));
+		
 		
     //h_layout -> addLayout(v_layout);
     h_layout->addWidget(web_view);
