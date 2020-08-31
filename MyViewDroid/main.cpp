@@ -6,22 +6,11 @@
 #include <QHBoxLayout>
 #include <QUrl>
 #include <QLineEdit>
+#include <QApplication>
+#include "inc.h"
+
 int main(int argc, char *argv[])
 {
-	char *address;
-		if(argc < 2)
-		{
-						qDebug() << "error";
-						address = "https://www.google.co.jp";
-		}
-		else
-		{
-						qDebug() << argv[1];
-						address=argv[1];
-						
-		}
-
-
     QApplication a(argc, argv);
     QWidget *myActivity = new QWidget();
     myActivity->setWindowTitle("MyViewer");
@@ -32,6 +21,8 @@ int main(int argc, char *argv[])
 		//h_layout
     QPushButton *push_ok = new QPushButton("GO", myActivity);
     QPushButton *back_page = new QPushButton("Back",myActivity);
+    Myprint p;
+    QObject::connect(back_page, SIGNAL(clicked()), &p, SLOT(myprint()));
     QLineEdit *editor = new QLineEdit(myActivity);
    // editor.setS
     v_layout->addWidget(back_page);
@@ -42,8 +33,8 @@ int main(int argc, char *argv[])
 		//h_layout->addWidget(push_ok);
 		//webview
 		QWebView *web_view = new QWebView();
-		
-		web_view -> load(QUrl(address));
+	 const char *url 
+		web_view -> load("https://www.google.co.jp");
 		
 		
     //h_layout -> addLayout(v_layout);

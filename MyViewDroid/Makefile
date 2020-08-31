@@ -12,10 +12,10 @@ MAKEFILE      = Makefile
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_WEBKITWIDGETS_LIB -DQT_WIDGETS_LIB -DQT_WEBKIT_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
-CFLAGS        = -no-pie -pipe -O2 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-CXXFLAGS      = -no-pie -pipe -O2 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I. -I. -isystem /usr/include/aarch64-linux-gnu/qt5 -isystem /usr/include/aarch64-linux-gnu/qt5/QtWebKitWidgets -isystem /usr/include/aarch64-linux-gnu/qt5/QtWidgets -isystem /usr/include/aarch64-linux-gnu/qt5/QtWebKit -isystem /usr/include/aarch64-linux-gnu/qt5/QtGui -isystem /usr/include/aarch64-linux-gnu/qt5/QtNetwork -isystem /usr/include/aarch64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I. -I/usr/lib/aarch64-linux-gnu/qt5/mkspecs/linux-g++
+DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+CFLAGS        = -pipe -O2 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
+CXXFLAGS      = -pipe -O2 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
+INCPATH       = -I. -I. -isystem /usr/include/aarch64-linux-gnu/qt5 -isystem /usr/include/aarch64-linux-gnu/qt5/QtWidgets -isystem /usr/include/aarch64-linux-gnu/qt5/QtGui -isystem /usr/include/aarch64-linux-gnu/qt5/QtCore -I. -isystem /usr/include/libdrm -I/usr/lib/aarch64-linux-gnu/qt5/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt5/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -37,8 +37,8 @@ COMPRESS      = gzip -9f
 DISTNAME      = MyViewDroid1.0.0
 DISTDIR = /home/u0_a190/github.com/qt5/MyViewDroid/.tmp/MyViewDroid1.0.0
 LINK          = g++
-LFLAGS        = -Wl,-O1 -Wl,-rpath-link,/usr/lib/aarch64-linux-gnu
-LIBS          = $(SUBLIBS) -L/usr/lib/aarch64-linux-gnu -lQt5WebKitWidgets -lQt5Widgets -lQt5WebKit -lQt5Gui -lQt5Network -lQt5Core -lGL -lpthread 
+LFLAGS        = -Wl,-O1
+LIBS          = $(SUBLIBS) -L/usr/lib/aarch64-linux-gnu -lQt5Widgets -lQt5Gui -lQt5Core -lGL -lpthread 
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -50,11 +50,13 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = main.cpp \
-		mainactivity.cpp moc_mainactivity.cpp
-OBJECTS       = main.o \
-		mainactivity.o \
-		moc_mainactivity.o
+SOURCES       = inc.cpp \
+		main.cpp \
+		Myprint.cpp moc_inc.cpp
+OBJECTS       = inc.o \
+		main.o \
+		Myprint.o \
+		moc_inc.o
 DIST          = /usr/lib/aarch64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/aarch64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/aarch64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -136,8 +138,9 @@ DIST          = /usr/lib/aarch64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/aarch64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/aarch64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/aarch64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		MyViewDroid.pro mainactivity.h main.cpp \
-		mainactivity.cpp
+		MyViewDroid.pro inc.h inc.cpp \
+		main.cpp \
+		Myprint.cpp
 QMAKE_TARGET  = MyViewDroid
 DESTDIR       = 
 TARGET        = MyViewDroid
@@ -146,7 +149,7 @@ TARGET        = MyViewDroid
 first: all
 ####### Build rules
 
-$(TARGET): ui_mainactivity.h $(OBJECTS)  
+$(TARGET):  $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: MyViewDroid.pro /usr/lib/aarch64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/aarch64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -233,7 +236,6 @@ Makefile: MyViewDroid.pro /usr/lib/aarch64-linux-gnu/qt5/mkspecs/linux-g++/qmake
 		MyViewDroid.pro \
 		/usr/lib/aarch64-linux-gnu/libQt5Widgets.prl \
 		/usr/lib/aarch64-linux-gnu/libQt5Gui.prl \
-		/usr/lib/aarch64-linux-gnu/libQt5Network.prl \
 		/usr/lib/aarch64-linux-gnu/libQt5Core.prl
 	$(QMAKE) -o Makefile MyViewDroid.pro
 /usr/lib/aarch64-linux-gnu/qt5/mkspecs/features/spec_pre.prf:
@@ -320,7 +322,6 @@ Makefile: MyViewDroid.pro /usr/lib/aarch64-linux-gnu/qt5/mkspecs/linux-g++/qmake
 MyViewDroid.pro:
 /usr/lib/aarch64-linux-gnu/libQt5Widgets.prl:
 /usr/lib/aarch64-linux-gnu/libQt5Gui.prl:
-/usr/lib/aarch64-linux-gnu/libQt5Network.prl:
 /usr/lib/aarch64-linux-gnu/libQt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile MyViewDroid.pro
@@ -337,10 +338,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/aarch64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents mainactivity.h $(DISTDIR)/
-	$(COPY_FILE) --parents main.cpp mainactivity.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents mainactivity.ui $(DISTDIR)/
-	$(COPY_FILE) --parents MyView_ja_JP.ts $(DISTDIR)/
+	$(COPY_FILE) --parents inc.h $(DISTDIR)/
+	$(COPY_FILE) --parents inc.cpp main.cpp Myprint.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -372,45 +371,47 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/aarch64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -Wall -W -dM -E -o moc_predefs.h /usr/lib/aarch64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_mainactivity.cpp
+compiler_moc_header_make_all: moc_inc.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_mainactivity.cpp
-moc_mainactivity.cpp: mainactivity.h \
+	-$(DEL_FILE) moc_inc.cpp
+moc_inc.cpp: inc.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/u0_a190/github.com/qt5/MyViewDroid/moc_predefs.h -I/usr/lib/aarch64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/u0_a190/github.com/qt5/MyViewDroid -I/home/u0_a190/github.com/qt5/MyViewDroid -I/usr/include/aarch64-linux-gnu/qt5 -I/usr/include/aarch64-linux-gnu/qt5/QtWebKitWidgets -I/usr/include/aarch64-linux-gnu/qt5/QtWidgets -I/usr/include/aarch64-linux-gnu/qt5/QtWebKit -I/usr/include/aarch64-linux-gnu/qt5/QtGui -I/usr/include/aarch64-linux-gnu/qt5/QtNetwork -I/usr/include/aarch64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include mainactivity.h -o moc_mainactivity.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/u0_a190/github.com/qt5/MyViewDroid/moc_predefs.h -I/usr/lib/aarch64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/u0_a190/github.com/qt5/MyViewDroid -I/home/u0_a190/github.com/qt5/MyViewDroid -I/usr/include/aarch64-linux-gnu/qt5 -I/usr/include/aarch64-linux-gnu/qt5/QtWidgets -I/usr/include/aarch64-linux-gnu/qt5/QtGui -I/usr/include/aarch64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include inc.h -o moc_inc.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
-compiler_moc_source_make_all:
+compiler_moc_source_make_all: inc.moc
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_mainactivity.h
-compiler_uic_clean:
-	-$(DEL_FILE) ui_mainactivity.h
-ui_mainactivity.h: mainactivity.ui \
-		/usr/lib/qt5/bin/uic \
-		/usr/include/aarch64-linux-gnu/qt5/QtWebKitWidgets/QWebView
-	/usr/lib/qt5/bin/uic mainactivity.ui -o ui_mainactivity.h
+	-$(DEL_FILE) inc.moc
+inc.moc: inc.cpp \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/u0_a190/github.com/qt5/MyViewDroid/moc_predefs.h -I/usr/lib/aarch64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/u0_a190/github.com/qt5/MyViewDroid -I/home/u0_a190/github.com/qt5/MyViewDroid -I/usr/include/aarch64-linux-gnu/qt5 -I/usr/include/aarch64-linux-gnu/qt5/QtWidgets -I/usr/include/aarch64-linux-gnu/qt5/QtGui -I/usr/include/aarch64-linux-gnu/qt5/QtCore -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include inc.cpp -o inc.moc
 
+compiler_uic_make_all:
+compiler_uic_clean:
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
 compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_moc_source_clean 
 
 ####### Compile
 
-main.o: main.cpp 
+inc.o: inc.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o inc.o inc.cpp
+
+main.o: main.cpp inc.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
-mainactivity.o: mainactivity.cpp mainactivity.h \
-		ui_mainactivity.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainactivity.o mainactivity.cpp
+Myprint.o: Myprint.cpp inc.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Myprint.o Myprint.cpp
 
-moc_mainactivity.o: moc_mainactivity.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainactivity.o moc_mainactivity.cpp
+moc_inc.o: moc_inc.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_inc.o moc_inc.cpp
 
 ####### Install
 
