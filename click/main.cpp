@@ -1,34 +1,30 @@
-#include <QCoreApplication>
-#include <QDebug>
-#include <QTimer>
-
-inline void onTick()
-{
-   qDebug() << "onTick()";
-}
-
-struct OnTimerTickListener {
-   void onTimerTick()
-   {
-       qDebug() << "OnTimerTickListener::onTimerTick()";
-   }
-};
-
+#include <QApplication>
+#include <QWindow>
+#include <QPushButton>
+#include <QtWebKitWidgets/QWebView>
+#include <QHBoxLayout>
+#include <QUrl>
+#include <QLineEdit>
+#include "inc.h"
 int main(int argc, char *argv[])
 {
-    QCoreApplication app(argc, argv);
-
-    OnTimerTickListener listenerObject;
-
-    QTimer timer;
-    // Connecting to a non-member function
-    QObject::connect(&timer, &QTimer::timeout, onTick);
-    // Connecting to an object member method
-    QObject::connect(&timer, &QTimer::timeout, &listenerObject, &OnTimerTickListener::onTimerTick);
-    // Connecting to a lambda
-    QObject::connect(&timer, &QTimer::timeout, [](){
-        qDebug() << "lambda-onTick";
-    });    
-
-    return app.exec();
+	QApplication a(argc, argv);
+	    QWidget *myActivity = new QWidget();
+    myActivity->setWindowTitle("MyViewer");
+    Myprint p;
+        QPushButton *back_page = new QPushButton("Back",myActivity);
+        	QObject::connect(back_page, SIGNAL(clicked()),
+	              &p, SLOT(myprint()));
+	     	
+        QVBoxLayout *vbox = new QVBoxLayout(myActivity);
+        vbox -> addWidget(back_page);
+        myActivity -> setLayout(vbox);
+        myActivity -> show();
+  return a.exec();
 }
+
+    
+    
+    
+    
+    
