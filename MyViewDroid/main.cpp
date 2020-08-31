@@ -31,8 +31,10 @@ int main(int argc, char *argv[])
     QVBoxLayout *main_layout = new QVBoxLayout;
 		//h_layout
     QPushButton *push_ok = new QPushButton("GO", myActivity);
+    QPushButton *back_page = new QPushButton("Back",myActivity);
     QLineEdit *editor = new QLineEdit(myActivity);
    // editor.setS
+    v_layout->addWidget(back_page);
     v_layout->addWidget(push_ok);
     v_layout->addWidget(editor);
 		//QLineEdit *url_my = new QLineEdit;
