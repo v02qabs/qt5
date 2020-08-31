@@ -1,3 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="MyView_ja_JP"></TS>
+<TS version="2.1" language="MyView1_ja_JP"></TS>
