@@ -9,9 +9,9 @@ public:
 	Myprint();
  
 public slots:
-	void myprint() ;
+	void show() ;
  
 signals:
-	void click();
+	void clicked();
 
 };

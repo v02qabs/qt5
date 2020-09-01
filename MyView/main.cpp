@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     Myprint p;
         QPushButton *back_page = new QPushButton("Back",myActivity);
         	QObject::connect(back_page, SIGNAL(clicked()),
-	              &p, SLOT(myprint()));
+	              &p, SLOT(show()));
 	     	
         QVBoxLayout *vbox = new QVBoxLayout(myActivity);
         vbox -> addWidget(back_page);

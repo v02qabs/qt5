@@ -5,7 +5,7 @@ Myprint::Myprint()
 
 }
 
-void Myprint::myprint()
+void Myprint::show()
 {
 	qDebug() << "Hello.";
 }
