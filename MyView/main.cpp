@@ -13,11 +13,14 @@ int main(int argc, char *argv[])
     myActivity->setWindowTitle("MyViewer");
     Myprint p;
         QPushButton *back_page = new QPushButton("Back",myActivity);
+				QWebView *webview = new QWebView(myActivity);
+				webview->load(QUrl("https://www.google.co.jp"));
         	QObject::connect(back_page, SIGNAL(clicked()),
 	              &p, SLOT(show()));
 	     	
         QVBoxLayout *vbox = new QVBoxLayout(myActivity);
         vbox -> addWidget(back_page);
+				vbox -> addWidget(webview);
         myActivity -> setLayout(vbox);
         myActivity -> show();
   return a.exec();
