@@ -33,8 +33,7 @@ int main(int argc, char *argv[])
 		//h_layout->addWidget(push_ok);
 		//webview
 		QWebView *web_view = new QWebView();
-		QUrl *url = new QUrl("https://www.google.co.jp");
-		web_view->load(url);
+		web_view->load(QUrl("https://www.google.co.jp"));
 		
 		
     //h_layout -> addLayout(v_layout);

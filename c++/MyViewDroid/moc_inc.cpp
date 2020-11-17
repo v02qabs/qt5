@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'inc.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.12.8)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.11.3)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'inc.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.12.8. It"
+#error "This file was generated using the moc from 5.11.3. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Myprint_t {
     QByteArrayData data[4];
-    char stringdata0[22];
+    char stringdata0[23];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,19 +32,19 @@ struct qt_meta_stringdata_Myprint_t {
 static const qt_meta_stringdata_Myprint_t qt_meta_stringdata_Myprint = {
     {
 QT_MOC_LITERAL(0, 0, 7), // "Myprint"
-QT_MOC_LITERAL(1, 8, 7), // "clicked"
-QT_MOC_LITERAL(2, 16, 0), // ""
-QT_MOC_LITERAL(3, 17, 4) // "show"
+QT_MOC_LITERAL(1, 8, 5), // "click"
+QT_MOC_LITERAL(2, 14, 0), // ""
+QT_MOC_LITERAL(3, 15, 7) // "myprint"
 
     },
-    "Myprint\0clicked\0\0show"
+    "Myprint\0click\0\0myprint"
 };
 #undef QT_MOC_LITERAL
 
 static const uint qt_meta_data_Myprint[] = {
 
  // content:
-       8,       // revision
+       7,       // revision
        0,       // classname
        0,    0, // classinfo
        2,   14, // methods
@@ -72,18 +72,18 @@ static const uint qt_meta_data_Myprint[] = {
 void Myprint::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        auto *_t = static_cast<Myprint *>(_o);
+        Myprint *_t = static_cast<Myprint *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->clicked(); break;
-        case 1: _t->show(); break;
+        case 0: _t->click(); break;
+        case 1: _t->myprint(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
             using _t = void (Myprint::*)();
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&Myprint::clicked)) {
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&Myprint::click)) {
                 *result = 0;
                 return;
             }
@@ -92,14 +92,10 @@ void Myprint::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
     Q_UNUSED(_a);
 }
 
-QT_INIT_METAOBJECT const QMetaObject Myprint::staticMetaObject = { {
-    &QObject::staticMetaObject,
-    qt_meta_stringdata_Myprint.data,
-    qt_meta_data_Myprint,
-    qt_static_metacall,
-    nullptr,
-    nullptr
-} };
+QT_INIT_METAOBJECT const QMetaObject Myprint::staticMetaObject = {
+    { &QObject::staticMetaObject, qt_meta_stringdata_Myprint.data,
+      qt_meta_data_Myprint,  qt_static_metacall, nullptr, nullptr}
+};
 
 
 const QMetaObject *Myprint::metaObject() const
@@ -133,7 +129,7 @@ int Myprint::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void Myprint::clicked()
+void Myprint::click()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
