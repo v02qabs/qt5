@@ -17,7 +17,7 @@ int main(int argc , char  *argv[])
     {
         qDebug() << "Connected Successfully to DB !";
         QSqlQuery query;
-        query.prepare("SELECT coutry FROM user");
+        query.prepare("SELECT * FROM user");
         if(!query.exec())
         {
             qDebug() << "Can't Execute Query !";
