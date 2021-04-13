@@ -1,4 +1,4 @@
-#include <QApplication>
+#include <QCoreApplication>
 #include <QWindow> 
 #include <QPushButton>
 #include <QtWebKitWidgets/QWebView>
