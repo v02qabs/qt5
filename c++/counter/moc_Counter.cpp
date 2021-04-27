@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'Counter.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.12.8)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.11.3)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'Counter.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.12.8. It"
+#error "This file was generated using the moc from 5.11.3. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -47,7 +47,7 @@ QT_MOC_LITERAL(5, 40, 5) // "value"
 static const uint qt_meta_data_Counter[] = {
 
  // content:
-       8,       // revision
+       7,       // revision
        0,       // classname
        0,    0, // classinfo
        2,   14, // methods
@@ -75,7 +75,7 @@ static const uint qt_meta_data_Counter[] = {
 void Counter::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        auto *_t = static_cast<Counter *>(_o);
+        Counter *_t = static_cast<Counter *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
@@ -94,14 +94,10 @@ void Counter::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
     }
 }
 
-QT_INIT_METAOBJECT const QMetaObject Counter::staticMetaObject = { {
-    &QObject::staticMetaObject,
-    qt_meta_stringdata_Counter.data,
-    qt_meta_data_Counter,
-    qt_static_metacall,
-    nullptr,
-    nullptr
-} };
+QT_INIT_METAOBJECT const QMetaObject Counter::staticMetaObject = {
+    { &QObject::staticMetaObject, qt_meta_stringdata_Counter.data,
+      qt_meta_data_Counter,  qt_static_metacall, nullptr, nullptr}
+};
 
 
 const QMetaObject *Counter::metaObject() const
