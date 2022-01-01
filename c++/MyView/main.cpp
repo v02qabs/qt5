@@ -14,7 +14,15 @@ int  main(int argc, char** argv)
 	QApplication app(argc, argv);
 	QWebView *viewer = new QWebView();
 	QPushButton *pageback = new QPushButton("BACK");
-	viewer->load(QUrl("https://www.google.co.jp"));
+	if(argc <= 1)
+	{
+		printf("error\n");
+		viewer -> load(QUrl("https://www.google.co.jp"));
+	}
+	else
+	{
+	viewer->load(QUrl(argv[1]));
+	}
 	QWidget *window = new QWidget();
 	QVBoxLayout *layout = new QVBoxLayout;
 	layout->addWidget(viewer);
